@@ -1,0 +1,4 @@
+.todo-card-p {
+    max-width: 100%; /* Adjust this value as needed */
+    word-wrap: break-word;
+  }
