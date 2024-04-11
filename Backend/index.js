@@ -16,27 +16,24 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Middleware
+// Middleware - CORS setup
+app.use((req, res, next) => {
+    // Set CORS headers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
+    
+    // Preflight CORS handler
+    if(req.method === 'OPTIONS') {
+        return res.status(200).json({ body: "OK" });
+    }
+    
+    next(); // Move to the next middleware
+});
+
+// Middleware - Parse JSON bodies
 app.use(express.json());
-
-// Enable CORS using the allowCors middleware function
-const allowCors = (fn) => async (req, res) => {
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-  return await fn(req, res);
-};
-
-// Apply allowCors to all routes
-app.use(allowCors);
 
 // Routes
 app.use("/api", signup);
@@ -45,10 +42,11 @@ app.use("/api/task", taskRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  res.status(200).json({ message: "Internal server error" });
+  res.status(500).json({ message: "Internal server error" });
 });
 
 // Start the server
-app.listen(() => {
-  console.log(`Server running`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
