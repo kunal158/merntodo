@@ -17,20 +17,15 @@ const app = express();
 connectDB();
 
 // Middleware - CORS setup
+app.use(cors());
+
 app.use((req, res, next) => {
-    // Set CORS headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
-    
-    // Preflight CORS handler
-    if(req.method === 'OPTIONS') {
-        return res.status(200).json({ body: "OK" });
-    }
-    
-    next(); // Move to the next middleware
-});
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Credentials', true); // If your application uses credentials like cookies
+//   next(); // Move to the next middleware
+// });
 
 // Middleware - Parse JSON bodies
 app.use(express.json());
