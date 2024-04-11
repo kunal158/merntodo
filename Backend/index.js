@@ -18,10 +18,25 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(cors({
-  origin: 'https://todoinggg.vercel.app',
-  credentials: true // If your frontend uses cookies or authorization headers
-}));
+
+// Enable CORS using the allowCors middleware function
+const allowCors = (fn) => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  return await fn(req, res);
+};
+
+// Apply allowCors to all routes
+app.use(allowCors);
 
 // Routes
 app.use("/api", signup);
