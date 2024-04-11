@@ -18,12 +18,7 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(cors({
-  origin: '*',
-  methods: ["POST", "GET"],
-  credentials: true, // If your frontend uses credentials like cookies
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+app.use(cors());
 
 
 // Routes
