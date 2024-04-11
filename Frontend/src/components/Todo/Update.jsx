@@ -28,7 +28,7 @@ const Update = ({ display, update }) => {
 
   const submit = async () => {
     await axios
-      .put(`${window.location.origin}/api/task/updatetask/${update._id}`, Inputs)
+      .put(`https://todoing-ten.vercel.app/api/task/updatetask/${update._id}`, Inputs)
       .then((response) => {
         toast.success(response.data.message);
       });

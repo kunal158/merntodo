@@ -36,7 +36,7 @@ const Todo = () => {
     } else {
       if (id) {
         await axios
-          .post(`${window.location.origin}/api/task/addtask`, {
+          .post('https://todoing-ten.vercel.app/api/task/addtask', {
             title: Inputs.title,
             body: Inputs.body,
             id: id,
@@ -58,7 +58,7 @@ const Todo = () => {
   const del = async (Cardid) => {
     if (id) {
       await axios
-        .delete(`${window.location.origin}/api/task/deletetask/${Cardid}`, {
+        .delete(`https://todoing-ten.vercel.app/api/task/deletetask/${Cardid}`, {
           data: { id: id },
         })
         .then(() => {
@@ -81,7 +81,7 @@ const Todo = () => {
     if (id) {
       const fetch = async () => {
         try {
-          const response = await axios.get(`${window.location.origin}/api/task/gettask/${id}`);
+          const response = await axios.get(`https://todoing-ten.vercel.app/api/task/gettask/${id}`);
           setArray(response.data.list);
         } catch (error) {
           console.error("Error fetching todo list:", error);
