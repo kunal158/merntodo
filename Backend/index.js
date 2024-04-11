@@ -18,7 +18,13 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://todoing-frontend.vercel.app",
+  methods: ["POST", "GET"],
+  credentials: true, // If your frontend uses credentials like cookies
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 
 // Routes
 app.use("/api", signup);
