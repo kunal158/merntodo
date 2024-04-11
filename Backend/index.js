@@ -23,6 +23,15 @@ app.use(cors({
   credentials: true // If your frontend uses cookies or authorization headers
 }));
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://todoinggg.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+
 
 // Routes
 app.use("/api", signup);
