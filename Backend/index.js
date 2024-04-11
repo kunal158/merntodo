@@ -19,7 +19,7 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: "https://cors-anywhere.herokuapp.com/corsdemo",
+  origin: '*',
   methods: ["POST", "GET"],
   credentials: true, // If your frontend uses credentials like cookies
   allowedHeaders: ["Content-Type", "Authorization"]
