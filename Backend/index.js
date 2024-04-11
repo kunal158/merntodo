@@ -34,12 +34,12 @@ app.use("/api/task", taskRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Internal server error" });
+  res.status(200).json({ message: "Internal server error" });
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000; // Use the port specified in .env file or default to 3000
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// Start the server
+app.listen(() => {
+  console.log(`Server running`);
 });
+
