@@ -19,7 +19,7 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: "https://todoing-frontend.vercel.app",
+  origin: "https://cors-anywhere.herokuapp.com/corsdemo",
   methods: ["POST", "GET"],
   credentials: true, // If your frontend uses credentials like cookies
   allowedHeaders: ["Content-Type", "Authorization"]
