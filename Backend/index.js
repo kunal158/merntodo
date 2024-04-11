@@ -22,7 +22,8 @@ app.use(cors(
   {
     origin: ["https://todoing-frontend.vercel.app/"],
     methods: ["POST", "GET"],
-    credentials: true
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
   }
 ));
 
