@@ -7,7 +7,7 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
-    await connect(process.env.MONGODB_URI); // Use the connection string from .env file
+    await connect("mongodb+srv://kunalg0815:kunal1111@cluster0.ufddxqc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"); 
     console.log("MongoDB connected!");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error.message);
