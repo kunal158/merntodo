@@ -20,7 +20,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${window.location.origin}/api/signup`, {
+      const response = await fetch('https://todoing-wheat.vercel.app/api/signup', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
