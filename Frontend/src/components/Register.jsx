@@ -21,6 +21,7 @@ function Register() {
     e.preventDefault();
     try {
       const response = await fetch('https://todoing-wheat.vercel.app/api/signup', {
+        mode: 'no-cors',
         method: "POST",
         headers: {
           "Content-Type": "application/json",
