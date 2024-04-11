@@ -16,12 +16,19 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Middleware
+// Middleware - CORS setup
+app.use(cors());
+
+app.use((req, res, next) => {
+   res.setHeader('Access-Control-Allow-Origin', '*');
+   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+   res.setHeader('Access-Control-Allow-Credentials', true); // If your application uses credentials like cookies
+   next(); // Move to the next middleware
+ });
+
+// Middleware - Parse JSON bodies
 app.use(express.json());
-app.use(cors({
-  origin: 'https://todoinggg.vercel.app',
-  credentials: true // If your frontend uses cookies or authorization headers
-}));
 
 // Routes
 app.use("/api", signup);
@@ -30,10 +37,11 @@ app.use("/api/task", taskRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  res.status(200).json({ message: "Internal server error" });
+  res.status(500).json({ message: "Internal server error" });
 });
 
 // Start the server
-app.listen(() => {
-  console.log(`Server running`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
