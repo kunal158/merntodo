@@ -22,13 +22,8 @@ app.use(cors());
 
 
 // Routes
-<<<<<<< HEAD
 app.use("/api", signup);
 app.use("/api", login);
-=======
-app.use("/api/signup", signup);
-app.use("/api/signin", signin);
->>>>>>> fec0c21ee2c4f4636311424cbd85c313e3c4b485
 app.use("/api/task", taskRoutes);
 
 // Error handling middleware
