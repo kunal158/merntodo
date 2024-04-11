@@ -18,7 +18,10 @@ connectDB();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://todoinggg.vercel.app',
+  credentials: true // If your frontend uses cookies or authorization headers
+}));
 
 
 // Routes
